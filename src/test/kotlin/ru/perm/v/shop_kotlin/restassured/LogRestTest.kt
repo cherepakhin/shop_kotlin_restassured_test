@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test
 @DisplayName("Log tests /log")
 class LogRestTest {
 
-    @Disabled
     @Test
     @Epic("REST API Log")
     @DisplayName("GET log is status=200")
