@@ -56,7 +56,7 @@ class GroupProductRestTest {
     fun getAll_check_DTO() {
         val json: String = given().get(CONSTS.GROUP_PATH).asString()
         val groups: List<GroupProductDTO> = mapper.readValue(json, object : TypeReference<List<GroupProductDTO>>() {})
-        assertEquals(6, groups.size)
+        assertEquals(7, groups.size)
 
         val g0 = groups.get(0)
         assertEquals(1, g0.n)
@@ -73,7 +73,7 @@ class GroupProductRestTest {
         val jsonPathEvaluator = response.jsonPath()
 
         val groups = jsonPathEvaluator.getList<GroupProductDTO>(".", GroupProductDTO::class.java);
-        assertEquals(6, groups.size)
+        assertEquals(7, groups.size)
         assertEquals(GroupProductDTO(1, "IT products", true, -1), groups.get(0))
     }
 }

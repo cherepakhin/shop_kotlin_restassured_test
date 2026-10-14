@@ -46,8 +46,6 @@ class ProductRestTest {
     }
 
     @Test
-    //TODO: not released
-    @Disabled
     @DisplayName("Get Product by ID")
     fun getByN_Test() {
         val ID:Long = 33

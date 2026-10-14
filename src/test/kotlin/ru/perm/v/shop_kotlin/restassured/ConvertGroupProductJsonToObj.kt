@@ -14,7 +14,6 @@ class ConvertGroupProductJsonToObj {
     val mapper = ObjectMapper()
 
     @Test
-    @Disabled
     internal fun singleGroupProduct() {
         val groupsJson = GroupProductDTO::class.java.getResource("/groups.json")?.readText()
         // 1. Так читать из неправильного json с []

@@ -1,13 +1,13 @@
 [
   {
     "n": 1,
-    "haveChilds": false,
+    "haveSubGroups": false,
     "name": "IT products",
     "parentN": -1
   },
   {
     "n": 2,
-    "haveChilds": false,
+    "haveSubGroups": false,
     "name": "Computers",
     "parentN": 1
   }
