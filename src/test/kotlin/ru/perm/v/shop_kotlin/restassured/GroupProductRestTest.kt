@@ -13,6 +13,7 @@ import ru.perm.v.shop_kotlin.restassured.dto.GroupProductDTO
 import java.io.FileOutputStream
 import java.util.*
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 
 @DisplayName("Group products tests")
@@ -75,5 +76,23 @@ class GroupProductRestTest {
         val groups = jsonPathEvaluator.getList<GroupProductDTO>(".", GroupProductDTO::class.java);
         assertEquals(7, groups.size)
         assertEquals(GroupProductDTO(1, "IT products", true, -1), groups.get(0))
+    }
+
+    @Test
+    @Epic("REST API getSubgroups() - non-existent group")
+    @DisplayName("GET Request GroupProductRest.getById/subgroups() with non-existent id returns 404")
+    fun getSubgroups_nonExistingId() {
+        val nonExistingId = 11111
+        val response = given().`when`()
+            .get(CONSTS.GROUP_PATH + nonExistingId + "/subgroups")
+            .then()
+            .statusCode(HttpStatus.SC_NOT_FOUND)
+            .contentType("application/json")
+            .extract().response()
+
+        val json = response.asString()
+        assertTrue(json.contains("\"error\":\"Not Found\""), "Expected 'Not Found' in: $json")
+        assertTrue(json.contains("\"message\":\"Group product not found with id: $nonExistingId\""), "Expected not found message")
+        assertTrue(json.contains("\"status\":404"), "Expected status 404 in: $json")
     }
 }
