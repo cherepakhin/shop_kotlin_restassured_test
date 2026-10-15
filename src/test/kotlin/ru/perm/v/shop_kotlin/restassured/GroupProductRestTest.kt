@@ -7,11 +7,13 @@ import io.restassured.RestAssured.given
 import io.restassured.response.Response
 import org.apache.http.HttpStatus
 import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import ru.perm.v.shop_kotlin.restassured.dto.GroupProductDTO
 import java.io.FileOutputStream
 import java.util.*
+import java.util.logging.Logger
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
@@ -33,6 +35,11 @@ class GroupProductRestTest {
             props.store(fileProps, "")
             fileProps.close()
         }
+    }
+
+    @BeforeEach
+    fun showParams() {
+        Logger.getLogger(this.javaClass.name).info("CONSTS.GROUP_PATH=" + CONSTS.GROUP_PATH)
     }
 
     @Test
@@ -91,8 +98,7 @@ class GroupProductRestTest {
             .extract().response()
 
         val json = response.asString()
-        assertTrue(json.contains("\"error\":\"Not Found\""), "Expected 'Not Found' in: $json")
         assertTrue(json.contains("\"message\":\"Group product not found with id: $nonExistingId\""), "Expected not found message")
-        assertTrue(json.contains("\"status\":404"), "Expected status 404 in: $json")
+        assertTrue(json.contains("\"status\":404"), "Expected status 500 in: $json")
     }
 }

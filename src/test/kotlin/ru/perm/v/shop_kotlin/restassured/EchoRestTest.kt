@@ -5,17 +5,25 @@ import io.restassured.RestAssured.get
 import io.restassured.RestAssured.given
 import org.apache.http.HttpStatus
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import java.util.logging.Logger
 
 @DisplayName("Echo tests")
 class EchoRestTest {
+
+    @BeforeEach
+    fun showParams() {
+        Logger.getLogger(this.javaClass.name).info("CONSTS.ECHO_PATH=" + CONSTS.ECHO_PATH)
+    }
 
     @Test
     @Epic("REST API Echo")
     @DisplayName("GET /echo/ with message. Check status is 200.")
     fun getMessage_HttpStatusIsOK() {
         val MESSAGE = "MESSAGE"
+        Logger.getLogger(this.javaClass.name).info("GET /echo/ with message. Check status is OK.")
         given().`when`().get(CONSTS.ECHO_PATH + MESSAGE).then()
             .statusCode(HttpStatus.SC_OK)
     }

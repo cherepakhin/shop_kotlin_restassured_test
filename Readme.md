@@ -30,8 +30,9 @@ class CONSTS {
 SHOP_KOTLIN_IP - адрес и порт сервиса. По умолчанию: __127.0.0.1:8980__. Установка переменных:
 
 ````shell
-$ export SHOP_KOTLIN_IP=192.168.1.57:8980
-$ echo $SHOP_KOTLIN_IP
+export SHOP_KOTLIN_IP=192.168.1.20:8980
+export SHOP_KOTLIN_IP=192.168.1.57:8980
+echo $SHOP_KOTLIN_IP
 192.168.1.57:8980
 ````
 
